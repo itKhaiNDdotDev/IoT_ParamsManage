@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">AppUI</string>
+    <string name="app_name">IoT Device Control</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Chào em, anh đứng ở đây từ chiều 😁</string>
+    <string name="hello">Chào em, anh đứng ở đây từ chiều 😁</string>
+    <string name="hello1">Đăng nhập vào</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
 </resources>
