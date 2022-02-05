@@ -1,0 +1,12 @@
+nav {
+    background-color: blueviolet;
+}
+.main {
+    display: flex;
+}
+tabVer {
+    background-color: antiquewhite;
+}
+tabMain {
+    background-color: aqua;
+}
