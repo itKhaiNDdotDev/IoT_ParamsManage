@@ -7,8 +7,8 @@ namespace IoTWebAPI.Models
 {
     public class Data
     {
-        public string id { get; set; }    //PK
-        public string a_id { get; set; }    //FK to Attribute
+        public int id { get; set; }    //PK
+        public int a_id { get; set; }    //FK to Attribute
         public float value { get; set; }
         public DateTime update_time { get; set; }
         public DvAttribute dv_attribute { get; set; }

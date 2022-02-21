@@ -15,11 +15,12 @@ namespace IoTWebAPI.EFConfigurations
             //throw new NotImplementedException();
             builder.ToTable("User");
             builder.HasKey(i => i.u_id);
-            builder.Property(t => t.fullname).IsRequired(true).HasMaxLength(60).IsUnicode(true);
+            builder.Property(t => t.fullname).IsRequired(true).HasMaxLength(50).IsUnicode(true);
             builder.HasIndex(t => t.email).IsUnique(true);
             builder.Property(t => t.password).IsRequired(true).IsUnicode(false);
             builder.Property(t => t.is_active).IsRequired(true).HasDefaultValue(1);
-            builder.Property(t => t.create_time).IsRequired(true).HasDefaultValue(DateTime.Now);
+            builder.Property(t => t.is_admin).IsRequired().HasDefaultValue(0);
+            builder.Property(t => t.create_date).IsRequired(true).HasDefaultValue(DateTime.Now.Date);
         }
     }
 }
