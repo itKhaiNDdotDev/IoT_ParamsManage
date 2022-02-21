@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IoTWebAPI.Migrations
 {
     [DbContext(typeof(IoTDbContext))]
-    [Migration("20220219155547_Initial")]
+    [Migration("20220221105322_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,16 +23,18 @@ namespace IoTWebAPI.Migrations
 
             modelBuilder.Entity("IoTWebAPI.Models.Data", b =>
                 {
-                    b.Property<string>("id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("a_id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("a_id")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("update_time")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 2, 19, 22, 55, 46, 913, DateTimeKind.Local).AddTicks(1644));
+                        .HasDefaultValue(new DateTime(2022, 2, 21, 17, 53, 22, 385, DateTimeKind.Local).AddTicks(7680));
 
                     b.Property<float>("value")
                         .HasColumnType("real");
@@ -46,17 +48,19 @@ namespace IoTWebAPI.Migrations
 
             modelBuilder.Entity("IoTWebAPI.Models.Device", b =>
                 {
-                    b.Property<string>("d_id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("d_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("create_time")
+                    b.Property<DateTime>("create_date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 2, 19, 22, 55, 46, 902, DateTimeKind.Local).AddTicks(239));
+                        .HasDefaultValue(new DateTime(2022, 2, 21, 0, 0, 0, 0, DateTimeKind.Local));
 
                     b.Property<string>("device_description")
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(350)")
+                        .HasMaxLength(350)
                         .IsUnicode(true);
 
                     b.Property<string>("device_name")
@@ -74,8 +78,8 @@ namespace IoTWebAPI.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<string>("u_id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("u_id")
+                        .HasColumnType("int");
 
                     b.HasKey("d_id");
 
@@ -86,32 +90,32 @@ namespace IoTWebAPI.Migrations
 
             modelBuilder.Entity("IoTWebAPI.Models.DvAttribute", b =>
                 {
-                    b.Property<string>("a_id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("a_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("a_description")
-                        .HasColumnType("nvarchar(300)")
-                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255)
                         .IsUnicode(true);
 
                     b.Property<int>("a_name")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("create_time")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 2, 19, 22, 55, 46, 911, DateTimeKind.Local).AddTicks(4888));
+                    b.Property<DateTime?>("active_date")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("d_id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("d_id")
+                        .HasColumnType("int");
 
                     b.Property<bool>("is_active")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
-                    b.Property<string>("last_update")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("last_update")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("a_id");
 
@@ -122,27 +126,34 @@ namespace IoTWebAPI.Migrations
 
             modelBuilder.Entity("IoTWebAPI.Models.User", b =>
                 {
-                    b.Property<string>("u_id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("u_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("create_time")
+                    b.Property<DateTime>("create_date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 2, 19, 22, 55, 46, 898, DateTimeKind.Local).AddTicks(5834));
+                        .HasDefaultValue(new DateTime(2022, 2, 21, 0, 0, 0, 0, DateTimeKind.Local));
 
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("fullname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50)
                         .IsUnicode(true);
 
                     b.Property<bool>("is_active")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
+
+                    b.Property<bool>("is_admin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("password")
                         .IsRequired()
@@ -162,21 +173,27 @@ namespace IoTWebAPI.Migrations
                 {
                     b.HasOne("IoTWebAPI.Models.DvAttribute", "dv_attribute")
                         .WithMany("data_values")
-                        .HasForeignKey("a_id");
+                        .HasForeignKey("a_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("IoTWebAPI.Models.Device", b =>
                 {
                     b.HasOne("IoTWebAPI.Models.User", "owner")
                         .WithMany("my_devices")
-                        .HasForeignKey("u_id");
+                        .HasForeignKey("u_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("IoTWebAPI.Models.DvAttribute", b =>
                 {
                     b.HasOne("IoTWebAPI.Models.Device", "device")
                         .WithMany("list_attributes")
-                        .HasForeignKey("d_id");
+                        .HasForeignKey("d_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -17,8 +17,8 @@ namespace IoTWebAPI.EFConfigurations
             builder.HasKey(i => i.a_id);
             builder.Property(t => t.a_name).IsRequired(true);
             builder.Property(t => t.a_description).HasMaxLength(255).IsUnicode(true);
-            builder.Property(t => t.is_active).IsRequired(true).HasDefaultValue(0);
-            builder.Property(t => t.create_date).IsRequired(true).HasDefaultValue(DateTime.Now.Date);
+            builder.Property(t => t.is_active).IsRequired(true).HasDefaultValue(false);
+            builder.Property(t => t.active_date).IsRequired(false);
             builder.Property(t => t.last_update).IsRequired(false);
             builder.HasOne(a => a.device).WithMany(d => d.list_attributes).HasForeignKey(fk => fk.d_id);
         }

@@ -11,12 +11,14 @@ namespace IoTWebAPI.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    u_id = table.Column<string>(nullable: false),
-                    fullname = table.Column<string>(maxLength: 60, nullable: false),
+                    u_id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    fullname = table.Column<string>(maxLength: 50, nullable: false),
                     email = table.Column<string>(nullable: true),
                     password = table.Column<string>(unicode: false, nullable: false),
                     is_active = table.Column<bool>(nullable: false, defaultValue: true),
-                    create_time = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 2, 19, 22, 55, 46, 898, DateTimeKind.Local).AddTicks(5834))
+                    is_admin = table.Column<bool>(nullable: false, defaultValue: false),
+                    create_date = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 2, 21, 0, 0, 0, 0, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -27,13 +29,14 @@ namespace IoTWebAPI.Migrations
                 name: "Devices",
                 columns: table => new
                 {
-                    d_id = table.Column<string>(nullable: false),
-                    u_id = table.Column<string>(nullable: true),
+                    d_id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    u_id = table.Column<int>(nullable: false),
                     device_name = table.Column<string>(maxLength: 100, nullable: false),
-                    device_description = table.Column<string>(maxLength: 300, nullable: true),
+                    device_description = table.Column<string>(maxLength: 350, nullable: true),
                     img_url = table.Column<string>(unicode: false, nullable: true),
                     is_active = table.Column<bool>(nullable: false, defaultValue: true),
-                    create_time = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 2, 19, 22, 55, 46, 902, DateTimeKind.Local).AddTicks(239))
+                    create_date = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 2, 21, 0, 0, 0, 0, DateTimeKind.Local))
                 },
                 constraints: table =>
                 {
@@ -43,20 +46,21 @@ namespace IoTWebAPI.Migrations
                         column: x => x.u_id,
                         principalTable: "User",
                         principalColumn: "u_id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Attributes",
                 columns: table => new
                 {
-                    a_id = table.Column<string>(nullable: false),
-                    d_id = table.Column<string>(nullable: true),
+                    a_id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    d_id = table.Column<int>(nullable: false),
                     a_name = table.Column<int>(nullable: false),
-                    a_description = table.Column<string>(maxLength: 300, nullable: true),
+                    a_description = table.Column<string>(maxLength: 255, nullable: true),
                     is_active = table.Column<bool>(nullable: false, defaultValue: false),
-                    create_time = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 2, 19, 22, 55, 46, 911, DateTimeKind.Local).AddTicks(4888)),
-                    last_update = table.Column<string>(nullable: true)
+                    active_date = table.Column<DateTime>(nullable: true),
+                    last_update = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -66,17 +70,18 @@ namespace IoTWebAPI.Migrations
                         column: x => x.d_id,
                         principalTable: "Devices",
                         principalColumn: "d_id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Datas",
                 columns: table => new
                 {
-                    id = table.Column<string>(nullable: false),
-                    a_id = table.Column<string>(nullable: true),
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    a_id = table.Column<int>(nullable: false),
                     value = table.Column<float>(nullable: false),
-                    update_time = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 2, 19, 22, 55, 46, 913, DateTimeKind.Local).AddTicks(1644))
+                    update_time = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2022, 2, 21, 17, 53, 22, 385, DateTimeKind.Local).AddTicks(7680))
                 },
                 constraints: table =>
                 {
@@ -86,7 +91,7 @@ namespace IoTWebAPI.Migrations
                         column: x => x.a_id,
                         principalTable: "Attributes",
                         principalColumn: "a_id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

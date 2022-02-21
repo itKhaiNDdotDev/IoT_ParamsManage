@@ -15,7 +15,7 @@ namespace IoTWebAPI.Models
         public string a_description { get; set; }
         public bool is_active { get; set; }
         [DataType(DataType.Date)]
-        public DateTime create_date { get; set; }
+        public DateTime? active_date { get; set; }
         [DataType(DataType.Date)]
         public DateTime?/*string*/ last_update { get; set; }
         public List<Data> data_values { get; set; } //An Device Attribue (1) - recive - (n) data values
