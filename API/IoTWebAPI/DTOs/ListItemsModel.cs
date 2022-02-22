@@ -7,7 +7,7 @@ namespace IoTWebAPI.DTOs
 {
     public class ListItemsModel<T>
     {
-        public List<T> Items { get; set; }
         public int countRecord { get; set; }
+        public List<T> Items { get; set; }
     }
 }

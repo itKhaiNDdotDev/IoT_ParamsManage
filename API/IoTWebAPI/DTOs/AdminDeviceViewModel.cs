@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IoTWebAPI.DTOs
 {
-    public class DeviceViewModel
+    public class AdminDeviceViewModel
     {
         public int d_id { get; set; }
         public int u_id { get; set; }
@@ -16,6 +16,6 @@ namespace IoTWebAPI.DTOs
         public bool is_active { get; set; }
         [DataType(DataType.Date)]
         public DateTime create_date { get; set; }
-        public List<DvAttribute> list_attributes { get; set; }
+        //Attributes
     }
 }
