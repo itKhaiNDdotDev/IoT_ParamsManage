@@ -1,4 +1,4 @@
-﻿using IoTWebAPI.DTOs;
+﻿using IoTWebAPI.DTOs.Devices;
 using IoTWebAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

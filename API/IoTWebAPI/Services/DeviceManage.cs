@@ -1,4 +1,4 @@
-﻿using IoTWebAPI.DTOs;
+﻿using IoTWebAPI.DTOs.Devices;
 using IoTWebAPI.EF;
 using IoTWebAPI.Helpers;
 using IoTWebAPI.Models;
@@ -212,10 +212,10 @@ namespace IoTWebAPI.Services
                 d_id = r.d_id,
                 u_id = r.u_id,
                 device_name = r.device_name,
-                 device_description = r.device_description,
-                 img_url = r.img_url,
-                 create_date = r.create_date,
-                 is_active = r.is_active
+                device_description = r.device_description,
+                img_url = r.img_url,
+                create_date = r.create_date,
+                is_active = r.is_active
             }).ToListAsync();
 
             var res = new ListItemsModel<AdminDeviceViewModel>//()

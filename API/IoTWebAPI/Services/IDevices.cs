@@ -1,4 +1,4 @@
-﻿using IoTWebAPI.DTOs;
+﻿using IoTWebAPI.DTOs.Devices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
