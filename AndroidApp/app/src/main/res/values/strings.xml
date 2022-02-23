@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IoT Attribute Data Management</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello">IoT Attribute Data Management</string>
+    <string name="hello1">Đăng nhập vào</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register">If you don\'t have account, register here!</string>
+</resources>
