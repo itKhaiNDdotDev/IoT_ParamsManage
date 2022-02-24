@@ -1,0 +1,26 @@
+<p class="text-center">LIST DEVICES</p>
+<div class="content">
+    
+  <div class="container">
+    <div class="row">
+      <a class="col-sm-4 text-center" href="create">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://paradisebound.org/wp-content/uploads/2016/10/pbm-icon-plus-blue.png">
+          <div class="card-body">
+            <h5 class="card-title">Create Device</h5>
+          </div>
+        </div>
+      </a>
+
+      <a class="col-sm-4 text-center" *ngFor="let device of listDevice" href="device/about-dv">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{device.img_url}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{device.device_name}}</h5>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>

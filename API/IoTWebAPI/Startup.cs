@@ -29,6 +29,17 @@ namespace IoTWebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //CORS
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200",
+                                            "http://www.contoso.com");
+                    });
+            });
+
             services.AddSwaggerGen(s => 
             {
                 s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -51,6 +62,7 @@ namespace IoTWebAPI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwagger();
+
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestAPI");
@@ -61,6 +73,8 @@ namespace IoTWebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

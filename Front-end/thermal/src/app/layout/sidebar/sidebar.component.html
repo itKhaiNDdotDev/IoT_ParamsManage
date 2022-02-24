@@ -1,65 +1,48 @@
 <div class="page-wrapper toggled">
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-      <i class="fas fa-bars"></i>
-    </a>
-    <nav id="sidebar" class="sidebar-wrapper">
-      <div class="sidebar-content">
-        <div class="sidebar-brand">
-        </div>
-        <!-- sidebar-header  -->
-        <div class="sidebar-menu">
-          <ul>
-            <!-- <li class="header-menu">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-menu">
+        <ul>
+          <!-- <li class="header-menu">
               <span>General</span>
             </li> -->
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <span>Home Device</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Device 1</a>
-                  </li>
-                  <li>
-                    <a href="#">Device 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Device 3</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <span>Work Device</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Device 1</a>
-                  </li>
-                  <li>
-                    <a href="#">Device 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Device 3</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-settings">
-                <a href="#">
-                  <i class="fa-solid fa-gear"></i>
-                  <span>Settings</span>
-                </a>
-            </li>
-          </ul>
-        </div>
-        <!-- sidebar-menu  -->
+          <li class="sidebar-dropdown">
+            <a href="device">
+              <span>All Device</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul *ngFor="let device of listDevice">
+                <li>
+                  <a href="device/about-dv">{{device.device_name}}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="button-add">
+            <a href="create" role="button">
+              <i class="fas fa-plus"></i>
+              <span> Create Device</span>
+            </a>
+          </li>
+          <li class="sidebar-settings">
+            <a href="setting">
+              <i class="fa fa-gear"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
       </div>
-      <!-- sidebar-content  -->
-    </nav>
-    <!-- sidebar-wrapper  -->
-    <!-- page-content" -->
-  </div>
+
+      <!--jdfhjdhfjd-->
+      <!-- sssdsdsd -->
+    </div>
+    <!-- sidebar-content  -->
+  </nav>
+  <!-- sidebar-wrapper  -->
+  <!-- page-content" -->
+</div>

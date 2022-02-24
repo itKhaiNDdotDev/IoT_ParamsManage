@@ -1,0 +1,30 @@
+<p class="text-center">LIST DEVICES</p>
+
+<form (submit)="createDevice()">
+
+    <div class="general">
+        <div class="name-img">
+            <div class="form-group col-6">
+                <label><strong>Name</strong></label>
+                <input type="text" [(ngModel)]="formModel.device_name" class="form-control" placeholder="Name of device" name="device_name" required>
+              </div>
+              <div class="form-group col-6">
+                  <label for="exampleFormControlFile1"><strong>Image</strong></label>
+                  <input type="file" [(ngModel)]="formModel.img_url" class="form-control-file" name="img_url" >
+              </div>
+        </div>
+      <div class="des">
+        <div class="form-group col-12">
+            <label><strong>Description</strong></label>
+            <textarea class="form-control" [(ngModel)]="formModel.device_description" placeholder="Description device" name="device_description" [maxLength]=255></textarea>
+        </div>
+      </div>
+        
+    </div>
+  
+    
+  
+    <button role="button" type="submit" class="btn btn-primary">Create</button>
+  </form>
+    
+  

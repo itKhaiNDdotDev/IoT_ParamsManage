@@ -32,8 +32,8 @@ namespace IoTWebAPI.Controllers
             if (deviceId <= 0)
                 return BadRequest();
             var device = await _deviceService.GetById(deviceId);
-            //return Created(nameof(GetById), device);
-            return CreatedAtAction(nameof(GetById), new { id = deviceId }, device);
+            return Created(nameof(GetById), device);
+            //return CreatedAtAction(nameof(GetById), new { id = deviceId }, device);
         }
 
         //Lat danh sach tat ca Device trong he thong duoi goc nhin Admin:   

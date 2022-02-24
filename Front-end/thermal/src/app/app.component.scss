@@ -7,16 +7,25 @@
 .content{
     display: flex;
     width: auto;
-    height: 960px;
+    height: auto;
     background-image: url(../assets/background.png);
 }
 .sidebar{
     background-color: #220b53;
     width: 22%;
-    opacity: 51%;
+    opacity: 70%;
     font-size: large;
-    border-radius: 10px;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 10px;
 }
 .main{
     width: 78%;
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    opacity: 70%;
+    border-radius: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
 }

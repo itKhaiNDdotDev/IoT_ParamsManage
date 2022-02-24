@@ -1,0 +1,25 @@
+.text-center {
+    font-weight: bold;
+    font-size: larger;
+}
+.content {
+    padding-top: 50px;
+}
+.content .container .row a {
+    color: white;
+    text-decoration: none;
+    padding-bottom: 20px;
+}
+.content .container .row .card {
+    background-color: #4b0386;
+    // color: white;
+    text-decoration: none;
+    padding-bottom: 20px;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+}
+img {
+    width: 120px;
+    padding-top: 20px;
+}
