@@ -1,8 +1,10 @@
 using IoTWebAPI.EF;
+using IoTWebAPI.Models;
 using IoTWebAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -38,13 +40,41 @@ namespace IoTWebAPI
                     Description = "Test IoT API with Swagger Ui"
                 });    
             });
+
+            //CORS
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:5001//*",
+                                            "https://localhost:44332/*,",
+                                            "http://localhost:5000",
+                                            "http://localhost",
+                                            "https://localhost",
+                                            "https://localhost:80",
+                                            "https://localhost:443",
+                                            "http://localhost:80",
+                                            "http://localhost:443",
+                                            "http://localhost:22",
+                                            "https://localhost:22"
+                                            );
+                    });
+            });
+
             services.AddDbContext<IoTDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DraftIoTDb")));
-
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<IoTDbContext>()
+                .AddDefaultTokenProviders();
             //My DI
             services.AddTransient<IDevices, DeviceManage>();
             services.AddTransient<IDvAttributes, DvAttributesManage>();
             services.AddTransient<IDvAtbDatas, DataService>();
+            services.AddTransient<UserManager<User>, UserManager<User>>();
+            services.AddTransient<SignInManager<User>, SignInManager<User>>();
+            services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
+            services.AddTransient<IUsers, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,8 +92,11 @@ namespace IoTWebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
+
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();

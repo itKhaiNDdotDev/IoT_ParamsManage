@@ -235,6 +235,7 @@ namespace IoTWebAPI.Services
             var res = new AdminDeviceViewModel()
             {
                 d_id = device.d_id,
+                u_id = device.u_id,
                 device_name = device.device_name,
                 device_description = device.device_description,
                 img_url = device.img_url,

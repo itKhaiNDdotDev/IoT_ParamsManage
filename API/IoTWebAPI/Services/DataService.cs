@@ -41,13 +41,13 @@ namespace IoTWebAPI.Services
             var data = from d in _context.Datas
                        select d;
             var atbData = data.Where(r => r.a_id == a_id);
-            var curData = atbData.Select(r => new DataValueViewModel()
+            var curData = await atbData.Select(r => new DataValueViewModel()
             {
                 id = r.id,
                 a_id = a_id,
                 value = r.value,
                 update_time = r.update_time
-            }).OrderByDescending(i => i.id).FirstOrDefault();
+            }).OrderByDescending(i => i.id).FirstOrDefaultAsync();
             return curData;
         }
 
