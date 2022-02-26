@@ -1,0 +1,2 @@
+Tạo 1 project Angular vào thư mục này:
+Cú pháp: ng new + tên project
